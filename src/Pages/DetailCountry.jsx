@@ -1,14 +1,21 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getCountryByCode } from "../Services/CountryService";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./DetailCountry.css";
 import Carousel from 'react-material-ui-carousel'
 
+
 const DetailCountry = () => {
   let [code] = useSearchParams();
-  code = code.get("code");
-  
+  code= code.get("code");
+  const navigate = useNavigate()
+
+  const handleClick = (codeBorder) => {
+    window.scrollTo(0, 0)
+    navigate("/detail?code="+codeBorder)
+  }
+
   const { isLoading, data, isError, error } = useQuery({
     queryKey: [code],
     queryFn: () => getCountryByCode(code),
@@ -106,7 +113,7 @@ const DetailCountry = () => {
             >
               {borders?.map(border => 
                     <div style={{textAlign: 'center'}} key={border.cca2}> 
-                      <div>
+                      <div onClick={() => handleClick(border.cca2)} >
                       <img className="flag-border" style={{minHeight:150,maxHeight:150}} src={border.flags.png}/> 
                       <h3>{border.name.common}</h3>
                       </div>
