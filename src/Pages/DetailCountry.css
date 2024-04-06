@@ -446,7 +446,7 @@ p{
 .leaflet-container {
     height: 350px;
     width: 100%;
-    border-radius: 2rem;
+    border-radius: 1rem;
   }
   
   .cluster-icon {

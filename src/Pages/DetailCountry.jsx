@@ -34,6 +34,10 @@ const DetailCountry = () => {
   let languages = country.languages;
   let borders = country.borders;
 
+    let countryAreaKm2 = country.area; 
+    let scaleFactor = 40000; 
+    let initialZoom = Math.max(2, Math.floor(Math.log2(scaleFactor / Math.sqrt(countryAreaKm2))));
+
   return (
     <>
       <div className="country-detail">
@@ -128,7 +132,7 @@ const DetailCountry = () => {
           }
            <div className="country__details country__map">
             <h2>Mapa:</h2>
-            <MapContainer center={country.latlng} zoom={6} scrollWheelZoom={false}>
+            <MapContainer center={country.latlng} zoom={initialZoom} scrollWheelZoom={false}>
               <TileLayer
                 attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"
