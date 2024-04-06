@@ -47,6 +47,10 @@
     transition: box-shadow .25s;
 }
 
+.flag-border{
+    box-shadow: 0 0 25px rgb(0, 0, 0);
+}
+
 .country__details:hover {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.815); 
 }
@@ -70,6 +74,12 @@ h2 {
     font-size: 1.3rem;
     color: #555;
     margin-top: 10px;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: #000000;
+    margin-top: 0;
 }
 
 p{
