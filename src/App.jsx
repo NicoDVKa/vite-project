@@ -1,25 +1,24 @@
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-import { useQuery } from '@tanstack/react-query';
-import { getAllCountries } from './Services/CountryService';
-import CircularProgress from '@mui/material/CircularProgress';
-import CountryCard from './Components/CountryCard/CountryCard';
+import Home from './Pages/Home'
+import Detail from './Pages/DetailCountry';
+import Base from './Containers/Base';
+
 
 function App() {
-
-  const {isLoading, data, isError, error} = useQuery({
-    queryKey: ['countries'],
-    queryFn : getAllCountries
-  })
-
-  if (isLoading) return <CircularProgress />
-  else if (isError) return <div>Error: {error.message}</div>
-
-
   return (
-    <div>
-      {data.map(country => <CountryCard country={country} key={country.code} />)}
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Base />} >
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/detail" element={<Detail />} />
+        </Route>
+      </Routes>
+    </Router>
+    
   );
 }
+
 
 export default App;

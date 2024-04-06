@@ -13,6 +13,7 @@ export const getAllCountries = async () => {
   } catch (error) {
     console.error("Error:", error);
   }
+
 }
 
 export const getCountryByCode = async (code) => {
@@ -24,7 +25,7 @@ export const getCountryByCode = async (code) => {
             throw new Error("Error al obtener los datos");
         }
         const jsonData = await response.json();
-        return jsonData;
+        return jsonData.map(json => CountryJson.fromJsonToCountry(json)).pop() ;
     } catch (error) {
         console.error("Error:", error);
     }

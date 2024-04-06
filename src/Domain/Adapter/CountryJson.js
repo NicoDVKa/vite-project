@@ -49,7 +49,8 @@ export class CountryJson {
 
         // Valores de campos diferentes o personalizados
         country.code = countryJson?.cca2 || country?.cca3 
-        country.currencies =countryJson.currencies ?  Object.keys(countryJson.currencies).map(item => {
+        country.name = countryJson.name.common
+        country.currencies = countryJson.currencies ?  Object.keys(countryJson.currencies).map(item => {
             return {
                 code : item,
                 name : countryJson.currencies[item].name,
