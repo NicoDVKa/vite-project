@@ -4,6 +4,10 @@ import { getCountryByCode } from "../Services/CountryService";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./DetailCountry.css";
 import Carousel from 'react-material-ui-carousel'
+import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+
+
 
 
 const DetailCountry = () => {
@@ -122,6 +126,17 @@ const DetailCountry = () => {
             </Carousel>
           </div>
           }
+           <div className="country__details country__map">
+            <h2>Mapa:</h2>
+            <MapContainer center={country.latlng} zoom={6} scrollWheelZoom={false}>
+              <TileLayer
+                attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"
+              />
+
+
+            </MapContainer>
+          </div>
         </section>
       </div>
     </>
